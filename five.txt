@@ -1,0 +1,21 @@
+-- Query 1
+SELECT Ename
+FROM EMPLOYEE E, CERTIFIED C, AIRCRAFT A
+WHERE E.Emp_ID = C.Emp_ID
+AND C.Aircraft_ID = A.Aircraft_ID
+AND Aircraft_name LIKE 'Boeing%';
+
+-- Query 2
+SELECT *
+FROM AIRCRAFT
+ORDER BY Cruising_range;
+
+-- Query 3
+SELECT Ename
+FROM EMPLOYEE
+WHERE Emp_ID NOT IN (
+    SELECT Emp_ID
+    FROM CERTIFIED C, AIRCRAFT A
+    WHERE C.Aircraft_ID = A.Aircraft_ID
+    AND Aircraft_name LIKE 'Boeing%'
+);
