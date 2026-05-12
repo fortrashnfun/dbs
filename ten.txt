@@ -1,28 +1,66 @@
 //SQL
+-- =========================
+-- OLD STYLE JOIN SYNTAX
+-- =========================
+
 -- Query 1
 SELECT Cname, COUNT(Order_ID)
-FROM CUSTOMER C, ORDERS O
+FROM CUSTOMER C, ORDER_TABLE O
 WHERE C.Cust_ID = O.Cust_ID
 AND City = 'Bangalore'
 GROUP BY Cname;
 
 -- Query 2
-SELECT DISTINCT Cname
-FROM CUSTOMER C, ORDERS O, ORDER_ITEM OI
+SELECT Cname
+FROM CUSTOMER C, ORDER_TABLE O, ORDER_ITEM OI
 WHERE C.Cust_ID = O.Cust_ID
 AND O.Order_ID = OI.Order_ID
-AND Qty >= 3;
+GROUP BY Cname
+HAVING COUNT(Item_ID) >= 3;
 
 -- Query 3
 SELECT Cname
 FROM CUSTOMER
 WHERE Cust_ID NOT IN (
     SELECT Cust_ID
-    FROM ORDERS O, ORDER_ITEM OI
+    FROM ORDER_TABLE O, ORDER_ITEM OI
     WHERE O.Order_ID = OI.Order_ID
     AND Item_ID = 10
 );
 
+
+-- =========================
+-- MODERN JOIN SYNTAX
+-- =========================
+
+-- Query 1
+SELECT Cname, COUNT(Order_ID)
+FROM CUSTOMER C
+JOIN ORDER_TABLE O
+ON C.Cust_ID = O.Cust_ID
+WHERE City = 'Bangalore'
+GROUP BY Cname;
+
+-- Query 2
+SELECT Cname
+FROM CUSTOMER C
+JOIN ORDER_TABLE O
+ON C.Cust_ID = O.Cust_ID
+JOIN ORDER_ITEM OI
+ON O.Order_ID = OI.Order_ID
+GROUP BY Cname
+HAVING COUNT(Item_ID) >= 3;
+
+-- Query 3
+SELECT Cname
+FROM CUSTOMER
+WHERE Cust_ID NOT IN (
+    SELECT Cust_ID
+    FROM ORDER_TABLE O
+    JOIN ORDER_ITEM OI
+    ON O.Order_ID = OI.Order_ID
+    WHERE Item_ID = 10
+);
 //MONGO
 
 // Query 1
