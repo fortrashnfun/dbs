@@ -1,0 +1,185 @@
+//SQL
+
+CREATE TABLE PLAYER (
+    PId INT PRIMARY KEY,
+    Lname VARCHAR(50),
+    Fname VARCHAR(50),
+    Country VARCHAR(50),
+    Yborn INT,
+    Bplace VARCHAR(50)
+);
+
+CREATE TABLE MATCH (
+    MatchId INT PRIMARY KEY,
+    Team1 VARCHAR(50),
+    Team2 VARCHAR(50),
+    Ground VARCHAR(50),
+    Date DATE,
+    Winner VARCHAR(50)
+);
+
+CREATE TABLE BATTING (
+    MatchId INT,
+    Pid INT,
+    Nruns INT,
+    Fours INT,
+    Sixes INT,
+    PRIMARY KEY (MatchId, Pid),
+    FOREIGN KEY (MatchId) REFERENCES MATCH(MatchId),
+    FOREIGN KEY (Pid) REFERENCES PLAYER(PId)
+);
+
+CREATE TABLE BOWLING (
+    MatchId INT,
+    Pid INT,
+    Novers DECIMAL(4, 1),
+    Maidens INT,
+    Nruns INT,
+    Nwickets INT,
+    PRIMARY KEY (MatchId, Pid),
+    FOREIGN KEY (MatchId) REFERENCES MATCH(MatchId),
+    FOREIGN KEY (Pid) REFERENCES PLAYER(PId)
+);
+
+INSERT INTO PLAYER VALUES 
+(1, 'Dhoni', 'MS', 'India', 1981, 'Ranchi'),
+(2, 'Kohli', 'Virat', 'India', 1988, 'Delhi'),
+(3, 'Smith', 'Steve', 'Australia', 1989, 'Sydney'),
+(4, 'Warner', 'David', 'Australia', 1986, 'Paddington'),
+(5, 'Maxwell', 'Glenn', 'Australia', 1988, 'Kew');
+
+INSERT INTO MATCH VALUES 
+(2689, 'India', 'Australia', 'Wankhede Stadium', '2026-05-01', 'India'),
+(2690, 'Australia', 'England', 'MCG', '2026-05-03', 'Australia'),
+(2691, 'India', 'South Africa', 'Eden Gardens', '2026-05-05', 'India'),
+(2692, 'Australia', 'Pakistan', 'SCG', '2026-05-07', 'Australia'),
+(2693, 'New Zealand', 'Australia', 'Chinnaswamy Stadium', '2026-05-10', 'Australia');
+
+INSERT INTO BATTING VALUES 
+(2689, 1, 45, 4, 2),
+(2689, 2, 82, 8, 1),
+(2689, 3, 30, 2, 0),
+(2690, 4, 110, 12, 3),
+(2692, 3, 55, 5, 1);
+
+INSERT INTO BOWLING VALUES 
+(2689, 5, 10.0, 0, 55, 2),
+(2690, 5, 4.2, 1, 20, 3),
+(2691, 2, 2.0, 0, 15, 0),
+(2692, 4, 1.0, 0, 10, 1),
+(2693, 1, 0.0, 0, 0, 0);
+
+//MONGO
+
+db.movies.insertMany([
+  {
+    "Actor_id": "A101",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-12",
+    "Director_id": "D501",
+    "Director_name": "Sanjay",
+    "Director_birthdate": "1970-01-01",
+    "film_title": "The Silent Valley",
+    "year_of_production": 2012,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A102",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1990-08-22",
+    "Director_id": "D501",
+    "Director_name": "Sanjay",
+    "Director_birthdate": "1970-01-01",
+    "film_title": "The Silent Valley",
+    "year_of_production": 2012,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A103",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-11-05",
+    "Director_id": "D502",
+    "Director_name": "Rajamouli",
+    "Director_birthdate": "1973-10-10",
+    "film_title": "Legend of Fire",
+    "year_of_production": 2020,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A101",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-12",
+    "Director_id": "D503",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1972-10-14",
+    "film_title": "City Lights",
+    "year_of_production": 2012,
+    "type": "Drama"
+  },
+  {
+    "Actor_id": "A102",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1990-08-22",
+    "Director_id": "D503",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1972-10-14",
+    "film_title": "City Lights",
+    "year_of_production": 2012,
+    "type": "Drama"
+  },
+  {
+    "Actor_id": "A103",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-11-05",
+    "Director_id": "D504",
+    "Director_name": "Prashanth",
+    "Director_birthdate": "1980-06-04",
+    "film_title": "Alpha Force",
+    "year_of_production": 2022,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A104",
+    "Actor_name": "Deepika",
+    "Actor_birthdate": "1986-01-05",
+    "Director_id": "D502",
+    "Director_name": "Rajamouli",
+    "Director_birthdate": "1973-10-10",
+    "film_title": "The Golden Era",
+    "year_of_production": 2015,
+    "type": "History"
+  },
+  {
+    "Actor_id": "A101",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-12",
+    "Director_id": "D505",
+    "Director_name": "Rohit",
+    "Director_birthdate": "1974-03-14",
+    "film_title": "Midnight Run",
+    "year_of_production": 2012,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A102",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1990-08-22",
+    "Director_id": "D505",
+    "Director_name": "Rohit",
+    "Director_birthdate": "1974-03-14",
+    "film_title": "Midnight Run",
+    "year_of_production": 2012,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A103",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-11-05",
+    "Director_id": "D506",
+    "Director_name": "Mani",
+    "Director_birthdate": "1956-06-02",
+    "film_title": "Blue Sky",
+    "year_of_production": 2026,
+    "type": "Romance"
+  }
+]);
