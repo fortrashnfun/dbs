@@ -14,9 +14,10 @@ AND P.Damage_Amount = (
 );
 
 -- Query 3
-SELECT Driver_ID, COUNT(Regno) AS Total_Cars
-FROM OWNS
-GROUP BY Driver_ID;
+SELECT Name, COUNT(Regno)
+FROM PERSON P, OWNS O
+WHERE P.Driver_ID = O.Driver_ID
+GROUP BY Name;
 
 //MONGO
 
