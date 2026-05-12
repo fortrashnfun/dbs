@@ -1,3 +1,4 @@
+//SQL
 -- Query 1
 SELECT DISTINCT S.Sid
 FROM SUPPLIER S, PART P, SHIPMENT SH
@@ -19,3 +20,28 @@ WHERE PID IN (
     FROM SHIPMENT
     WHERE Sid = 3
 );
+
+//MONGO
+// PROBLEM 1
+
+// Query 1
+db.tourist_places.find(
+{
+    "address.state": "Karnataka"
+},
+{
+    _id: 0,
+    place: 1
+})
+
+// Query 2
+db.tourist_places.find(
+{
+    "address.state": "Kerala"
+},
+{
+    _id: 0,
+    tourist_attractions: 1,
+    accommodation: 0,
+    food: 0
+})
