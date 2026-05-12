@@ -25,7 +25,6 @@ WHERE Emp_ID NOT IN (
 
 //MONGO
 
-// PROBLEM 3
 
 // Query 1
 db.restaurants.find(
