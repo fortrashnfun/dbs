@@ -18,7 +18,6 @@ FROM DEPARTMENT
 WHERE Dname LIKE '%tech%';
 
 //MONGO
-// PROBLEM 3
 
 // Query 1
 db.tourist_places.find(
