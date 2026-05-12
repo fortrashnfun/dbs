@@ -16,3 +16,22 @@ WHERE SSN IN (
 SELECT *
 FROM DEPARTMENT
 WHERE Dname LIKE '%tech%';
+
+//MONGO
+// PROBLEM 3
+
+// Query 1
+db.tourist_places.find(
+{
+    "address.state": "Karnataka"
+},
+{
+    _id: 0,
+    place: 1
+})
+
+// Query 2
+db.tourist_places.find().sort(
+{
+    "address.state": 1
+})
