@@ -17,8 +17,6 @@ SELECT Pno, SUM(Hours) AS Total_Hours
 FROM WORKS_ON
 GROUP BY Pno;
 
-// PROBLEM 2
-
 
 //MONGO
 // Query 1
