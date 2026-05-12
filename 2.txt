@@ -1,0 +1,160 @@
+//SQL
+
+CREATE TABLE DEPARTMENT (
+    Dname VARCHAR(50),
+    Dnumber INT PRIMARY KEY,
+    MgrSSN CHAR(9),
+    MgrStartDate DATE
+);
+
+CREATE TABLE EMPLOYEE (
+    Fname VARCHAR(50),
+    Lname VARCHAR(50),
+    SSN CHAR(9) PRIMARY KEY,
+    Addrs VARCHAR(100),
+    Sex CHAR(1),
+    Salary DECIMAL(10, 2),
+    SuperSSN CHAR(9),
+    Dno INT,
+    FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dnumber),
+    FOREIGN KEY (SuperSSN) REFERENCES EMPLOYEE(SSN)
+);
+
+CREATE TABLE PROJECT (
+    Pno INT PRIMARY KEY,
+    Pname VARCHAR(50),
+    Dnum INT,
+    FOREIGN KEY (Dnum) REFERENCES DEPARTMENT(Dnumber)
+);
+
+CREATE TABLE WORKS_ON (
+    ESSN CHAR(9),
+    Pno INT,
+    Hours DECIMAL(5, 1),
+    PRIMARY KEY (ESSN, Pno),
+    FOREIGN KEY (ESSN) REFERENCES EMPLOYEE(SSN),
+    FOREIGN KEY (Pno) REFERENCES PROJECT(Pno)
+);
+
+INSERT INTO DEPARTMENT VALUES 
+('Research', 5, '987654321', '2026-05-01'),
+('Administration', 4, '987654322', '2026-05-02'),
+('Software', 1, '987654323', '2026-05-03'),
+('DevOps', 2, '987654324', '2026-05-04'),
+('Quality', 3, '987654325', '2026-05-05');
+
+INSERT INTO EMPLOYEE VALUES 
+('Amit', 'Sharma', '987654321', 'MG Road, Bangalore', 'M', 95000, NULL, 5),
+('Sneha', 'Patil', '987654322', 'HSR Layout, Bangalore', 'F', 60000, '987654321', 5),
+('Rahul', 'Verma', '987654323', 'Powai, Mumbai', 'M', 45000, '987654321', 4),
+('Priya', 'Iyer', '987654324', 'Adyar, Chennai', 'F', 120000, NULL, 1),
+('Vikram', 'Singh', '987654325', 'Salt Lake, Kolkata', 'M', 75000, '987654324', 5);
+
+INSERT INTO PROJECT VALUES 
+(1, 'CloudSync', 5),
+(2, 'DataViz', 5),
+(3, 'AutoAuth', 1),
+(10, 'HealthTrack', 4),
+(20, 'FinSafe', 2);
+
+INSERT INTO WORKS_ON VALUES 
+('987654321', 1, 32.5),
+('987654322', 2, 20.0),
+('987654323', 10, 40.0),
+('987654324', 3, 25.5),
+('987654325', 1, 15.0);
+
+//MONGO
+
+db.restaurants.insertMany([
+  {
+    "id": 1,
+    "name": "Namma Kitchen",
+    "address": { "building": "12/A", "street": "Indiranagar 12th Main", "area": "Bangalore", "pin_code": "560038" },
+    "cuisine": ["North Indian thali", "South Indian"],
+    "nearby_landmarks": "Indiranagar Metro Station",
+    "online_delivery": "yes",
+    "famous_for": "Maharaja Thali"
+  },
+  {
+    "id": 2,
+    "name": "The Italian Table",
+    "address": { "building": "Shop 4", "street": "Koramangala 80ft Rd", "area": "Bangalore", "pin_code": "560034" },
+    "cuisine": ["Italian"],
+    "nearby_landmarks": "Sony World Signal",
+    "online_delivery": "yes",
+    "famous_for": "Pesto Pasta"
+  },
+  {
+    "id": 3,
+    "name": "Punjabi Tadka",
+    "address": { "building": "Plot 45", "street": "Residency Road", "area": "Bangalore", "pin_code": "560025" },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Bishop Cotton School",
+    "online_delivery": "no",
+    "famous_for": "Amritsari Kulcha"
+  },
+  {
+    "id": 4,
+    "name": "Coastal Flavors",
+    "address": { "building": "Unit 2", "street": "Whitefield Main Rd", "area": "Bangalore", "pin_code": "560066" },
+    "cuisine": ["Mangalorean", "North Indian thali"],
+    "nearby_landmarks": "ITPL Main Gate",
+    "online_delivery": "yes",
+    "famous_for": "Ghee Roast Chicken"
+  },
+  {
+    "id": 5,
+    "name": "Saffron Village",
+    "address": { "building": "Basement", "street": "Brigade Road", "area": "Bangalore", "pin_code": "560001" },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Rex Theatre",
+    "online_delivery": "yes",
+    "famous_for": "Dal Makhani"
+  },
+  {
+    "id": 6,
+    "name": "Biryani Zone",
+    "address": { "building": "99", "street": "Marathahalli Bridge", "area": "Bangalore", "pin_code": "560037" },
+    "cuisine": ["Hyderabadi"],
+    "nearby_landmarks": "Innovative Multiplex",
+    "online_delivery": "yes",
+    "famous_for": "Mutton Biryani"
+  },
+  {
+    "id": 7,
+    "name": "Dhaba Express",
+    "address": { "building": "4th Block", "street": "Jayanagar 10th Main", "area": "Bangalore", "pin_code": "560011" },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Jayanagar Head Post Office",
+    "online_delivery": "no",
+    "famous_for": "Butter Naan"
+  },
+  {
+    "id": 8,
+    "name": "Green Leaf",
+    "address": { "building": "Flat 3", "street": "Bannerghatta Road", "area": "Bangalore", "pin_code": "560076" },
+    "cuisine": ["North Indian thali", "Chinese"],
+    "nearby_landmarks": "Meenakshi Mall",
+    "online_delivery": "yes",
+    "famous_for": "Veg Thali"
+  },
+  {
+    "id": 9,
+    "name": "The Spice Route",
+    "address": { "building": "Level 1", "street": "Lavelle Road", "area": "Bangalore", "pin_code": "560001" },
+    "cuisine": ["Fusion"],
+    "nearby_landmarks": "UB City",
+    "online_delivery": "yes",
+    "famous_for": "Tandoori Prawns"
+  },
+  {
+    "id": 10,
+    "name": "Royal Treat",
+    "address": { "building": "Ground Floor", "street": "Electronic City Ph 2", "area": "Bangalore", "pin_code": "560100" },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Tech Mahindra Office",
+    "online_delivery": "yes",
+    "famous_for": "Paneer Tikka"
+  }
+]);
