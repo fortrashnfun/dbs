@@ -1,0 +1,18 @@
+-- Query 1
+SELECT D.Dname, AVG(E.Salary) AS Avg_Salary
+FROM DEPARTMENT D, EMPLOYEE E
+WHERE D.Dnumber = E.Dno
+GROUP BY D.Dname;
+
+-- Query 2
+SELECT Fname
+FROM EMPLOYEE
+WHERE SSN IN (
+    SELECT ESSN
+    FROM DEPENDENT
+);
+
+-- Query 3
+SELECT *
+FROM DEPARTMENT
+WHERE Dname LIKE '%tech%';
