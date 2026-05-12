@@ -1,0 +1,148 @@
+//SQL
+
+CREATE TABLE SUPPLIER (
+    Sid INT PRIMARY KEY,
+    Sname VARCHAR(50),
+    Address VARCHAR(100)
+);
+
+CREATE TABLE PART (
+    PID INT PRIMARY KEY,
+    Pname VARCHAR(50),
+    Color VARCHAR(20)
+);
+
+CREATE TABLE SHIPMENT (
+    Sid INT,
+    PID INT,
+    Cost DECIMAL(10, 2),
+    PRIMARY KEY (Sid, PID),
+    FOREIGN KEY (Sid) REFERENCES SUPPLIER(Sid),
+    FOREIGN KEY (PID) REFERENCES PART(PID)
+);
+
+INSERT INTO SUPPLIER VALUES 
+(1, 'Rajesh Enterprises', 'Industrial Estate, Pune'),
+(2, 'Lakshmi Logistics', 'Peenya, Bangalore'),
+(3, 'Suresh & Co.', 'Ambattur, Chennai'),
+(4, 'Mehta Manufacturing', 'GIDC, Ahmedabad'),
+(5, 'Karan Distributors', 'Okhla, Delhi');
+
+INSERT INTO PART VALUES 
+(10, 'Gear Box', 'Silver'),
+(20, 'Turbine Blade', 'Green'),
+(30, 'Steel Rod', 'Red'),
+(40, 'Circuit Board', 'Green'),
+(50, 'Hydraulic Pump', 'Blue');
+
+INSERT INTO SHIPMENT VALUES 
+(1, 10, 5000.00),
+(1, 20, 12000.00),
+(2, 20, 11500.00),
+(3, 40, 3000.00),
+(5, 50, 8500.00);
+
+//MONGO
+
+db.tourist_places.insertMany([
+  {
+    "id": 1,
+    "place": "Hampi",
+    "address": { "state": "Karnataka" },
+    "tourist_attractions": ["Virupaksha Temple", "Vittala Temple", "Lotus Mahal"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "nearest_airport": "Hubballi Airport", "railway_station": "Hosapete Junction" },
+    "accommodation": "Heritage Resorts, Homestays",
+    "food": "Badane Kaayi (Brinjal Curry)"
+  },
+  {
+    "id": 2,
+    "place": "Munnar",
+    "address": { "state": "Kerala" },
+    "tourist_attractions": ["Eravikulam National Park", "Mattupetty Dam", "Tea Gardens"],
+    "best_time_to_visit": "September to May",
+    "modes_of_transport": { "nearest_airport": "Cochin International", "railway_station": "Aluva" },
+    "accommodation": "Tea Estate Bungalows",
+    "food": "Appam with Stew"
+  },
+  {
+    "id": 3,
+    "place": "Coorg",
+    "address": { "state": "Karnataka" },
+    "tourist_attractions": ["Abbey Falls", "Raja's Seat", "Namdroling Monastery"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "nearest_airport": "Kannur International", "railway_station": "Mysuru" },
+    "accommodation": "Coffee Plantation Stays",
+    "food": "Pandi Curry (Pork Curry)"
+  },
+  {
+    "id": 4,
+    "place": "Wayanad",
+    "address": { "state": "Kerala" },
+    "tourist_attractions": ["Edakkal Caves", "Banasura Sagar Dam", "Soochipara Falls"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "nearest_airport": "Calicut International", "railway_station": "Kozhikode" },
+    "accommodation": "Tree Houses",
+    "food": "Malabar Biryani"
+  },
+  {
+    "id": 5,
+    "place": "Gokarna",
+    "address": { "state": "Karnataka" },
+    "tourist_attractions": ["Om Beach", "Mahabaleshwar Temple", "Kudle Beach"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "nearest_airport": "Dabolim Airport", "railway_station": "Gokarna Road" },
+    "accommodation": "Beach Shacks",
+    "food": "Seafood Thali"
+  },
+  {
+    "id": 6,
+    "place": "Alleppey",
+    "address": { "state": "Kerala" },
+    "tourist_attractions": ["Backwaters", "Alappuzha Beach", "Marari Beach"],
+    "best_time_to_visit": "November to February",
+    "modes_of_transport": { "nearest_airport": "Cochin International", "railway_station": "Alappuzha" },
+    "accommodation": "Houseboats",
+    "food": "Karimeen Pollichathu"
+  },
+  {
+    "id": 7,
+    "place": "Mysore",
+    "address": { "state": "Karnataka" },
+    "tourist_attractions": ["Mysore Palace", "Chamundi Hills", "Brindavan Gardens"],
+    "best_time_to_visit": "September to March",
+    "modes_of_transport": { "nearest_airport": "Mandakalli Airport", "railway_station": "Mysuru Junction" },
+    "accommodation": "Lalitha Mahal Palace",
+    "food": "Mysore Pak"
+  },
+  {
+    "id": 8,
+    "place": "Thekkady",
+    "address": { "state": "Kerala" },
+    "tourist_attractions": ["Periyar National Park", "Elephant Junction", "Spice Plantations"],
+    "best_time_to_visit": "September to March",
+    "modes_of_transport": { "nearest_airport": "Madurai Airport", "railway_station": "Kottayam" },
+    "accommodation": "Jungle Resorts",
+    "food": "Kappa and Meen Curry"
+  },
+  {
+    "id": 9,
+    "place": "Chikmagalur",
+    "address": { "state": "Karnataka" },
+    "tourist_attractions": ["Mullayanagiri", "Baba Budangiri", "Hebbe Falls"],
+    "best_time_to_visit": "September to May",
+    "modes_of_transport": { "nearest_airport": "Mangalore International", "railway_station": "Kadur" },
+    "accommodation": "Luxury Resorts",
+    "food": "Akki Roti"
+  },
+  {
+    "id": 10,
+    "place": "Varkala",
+    "address": { "state": "Kerala" },
+    "tourist_attractions": ["Varkala Cliff", "Janardanaswamy Temple", "Kappil Lake"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "nearest_airport": "Trivandrum International", "railway_station": "Varkala Sivagiri" },
+    "accommodation": "Cliff-side Hotels",
+    "food": "Banana Fritters"
+  }
+]);
