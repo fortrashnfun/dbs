@@ -1,0 +1,140 @@
+//SQL
+
+CREATE TABLE SAILORS (
+    Sid INT PRIMARY KEY,
+    Sname VARCHAR(50),
+    Rating INT,
+    Age INT
+);
+
+CREATE TABLE BOATS (
+    Bid INT PRIMARY KEY,
+    Bname VARCHAR(50),
+    Colour VARCHAR(20)
+);
+
+CREATE TABLE RESERVES (
+    Sid INT,
+    Bid INT,
+    day DATE,
+    PRIMARY KEY (Sid, Bid, day),
+    FOREIGN KEY (Sid) REFERENCES SAILORS(Sid),
+    FOREIGN KEY (Bid) REFERENCES BOATS(Bid)
+);
+
+INSERT INTO SAILORS (Sid, Sname, Rating, Age) VALUES
+(101, 'Arjun Sharma', 8, 22),
+(102, 'Priya Das', 9, 25),
+(103, 'Rohan Mehta', 7, 30),
+(104, 'Ananya Iyer', 10, 24),
+(105, 'Vikram Singh', 6, 28);
+
+INSERT INTO BOATS (Bid, Bname, Colour) VALUES
+(201, 'Jal-Pari', 'Red'),
+(202, 'Sagar-Kanya', 'Green'),
+(203, 'Vayu-Putra', 'Blue'),
+(204, 'Agni-Veer', 'Red'),
+(205, 'Neel-Kamal', 'White');
+
+INSERT INTO RESERVES (Sid, Bid, day) VALUES
+(101, 201, '2026-05-01'),
+(101, 202, '2026-05-05'),
+(102, 201, '2026-05-10'),
+(104, 204, '2026-05-12'),
+(105, 203, '2026-05-15');
+
+
+//MONGO: 
+
+db.restaurants.insertMany([
+  {
+    "id": 1,
+    "name": "Bengaluru Bhavan",
+    "address": { "building": "A1", "street": "MG Road", "area": "Bangalore", "pin_code": 560001 },
+    "cuisine": ["South Indian"],
+    "nearby_landmarks": "Metro Pillar 12",
+    "online_delivery": "yes",
+    "famous_for": "Masala Dosa"
+  },
+  {
+    "id": 2,
+    "name": "Tuscany Treats",
+    "address": { "building": "Suite 4", "street": "Koramangala 5th Block", "area": "Bangalore", "pin_code": 560034 },
+    "cuisine": ["Italian"],
+    "nearby_landmarks": "Empire Hotel",
+    "online_delivery": "yes",
+    "famous_for": "Wood-fired Pizza"
+  },
+  {
+    "id": 3,
+    "name": "Delhi Durbar",
+    "address": { "building": "Plot 12", "street": "Indiranagar 100ft Rd", "area": "Bangalore", "pin_code": 560038 },
+    "cuisine": ["North Indian", "North Indian thali"],
+    "nearby_landmarks": "Toit Brewery",
+    "online_delivery": "no",
+    "famous_for": "Special Maharaja Thali"
+  },
+  {
+    "id": 4,
+    "name": "Little Italy",
+    "address": { "building": "Ground Floor", "street": "Lavelle Road", "area": "Bangalore", "pin_code": 560001 },
+    "cuisine": ["Italian"],
+    "nearby_landmarks": "Uber Office",
+    "online_delivery": "yes",
+    "famous_for": "Lasagna"
+  },
+  {
+    "id": 5,
+    "name": "Punjab Junction",
+    "address": { "building": "Shop 2", "street": "HSR Layout Sector 2", "area": "Bangalore", "pin_code": 560102 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Agara Lake",
+    "online_delivery": "yes",
+    "famous_for": "Butter Chicken"
+  },
+  {
+    "id": 6,
+    "name": "Mumbai Spice",
+    "address": { "building": "Unit 9", "street": "Whitefield Main Rd", "area": "Bangalore", "pin_code": 560066 },
+    "cuisine": ["Maharashtrian"],
+    "nearby_landmarks": "Phoenix Mall",
+    "online_delivery": "yes",
+    "famous_for": "Vada Pav"
+  },
+  {
+    "id": 7,
+    "name": "Saffron Court",
+    "address": { "building": "45/A", "street": "Jayanagar 4th Block", "area": "Bangalore", "pin_code": 560011 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Nanda Talkies",
+    "online_delivery": "no",
+    "famous_for": "Dal Makhani"
+  },
+  {
+    "id": 8,
+    "name": "The Pasta Shop",
+    "address": { "building": "B-Block", "street": "Bannerghatta Road", "area": "Bangalore", "pin_code": 560076 },
+    "cuisine": ["Italian"],
+    "nearby_landmarks": "IIM Bangalore",
+    "online_delivery": "yes",
+    "famous_for": "Ravioli"
+  },
+  {
+    "id": 9,
+    "name": "Kolkata Kitchen",
+    "address": { "building": "1st Floor", "street": "Electronic City Ph 1", "area": "Bangalore", "pin_code": 560100 },
+    "cuisine": ["Bengali"],
+    "nearby_landmarks": "Wipro Gate",
+    "online_delivery": "yes",
+    "famous_for": "Fish Curry"
+  },
+  {
+    "id": 10,
+    "name": "Dhaba 1947",
+    "address": { "building": "High Street", "street": "Residency Road", "area": "Bangalore", "pin_code": 560025 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Gateway Hotel",
+    "online_delivery": "no",
+    "famous_for": "Tandoori Platter"
+  }
+]);
