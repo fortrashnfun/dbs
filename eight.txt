@@ -1,0 +1,21 @@
+-- Query 1
+SELECT Ground
+FROM MATCHES
+WHERE Team1 = 'Australia'
+ORDER BY Ground;
+
+-- Query 2
+SELECT M.*
+FROM MATCHES M, BATTING B, PLAYER P
+WHERE M.MatchId = B.MatchId
+AND B.PId = P.PId
+AND P.Lname = 'Dhoni';
+
+-- Query 3
+SELECT Fname, Lname
+FROM PLAYER
+WHERE PId IN (
+    SELECT PId
+    FROM BATTING
+    WHERE MatchId = 2689
+);
