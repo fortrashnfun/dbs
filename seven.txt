@@ -1,0 +1,17 @@
+-- Query 1
+SELECT DISTINCT Regno
+FROM PARTICIPATED;
+
+-- Query 2
+SELECT C.Regno, C.Model
+FROM CAR C, PARTICIPATED P
+WHERE C.Regno = P.Regno
+AND P.Damage_Amount = (
+    SELECT MAX(Damage_Amount)
+    FROM PARTICIPATED
+);
+
+-- Query 3
+SELECT Driver_ID, COUNT(Regno) AS Total_Cars
+FROM OWNS
+GROUP BY Driver_ID;
