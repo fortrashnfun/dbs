@@ -1,3 +1,5 @@
+//SQL
+
 -- Query 1
 SELECT Emp_ID
 FROM EMPLOYEE
@@ -7,16 +9,11 @@ WHERE Salary = (
 );
 
 -- Query 2
-SELECT A.Aircraft_name
-FROM AIRCRAFT A
-WHERE A.Aircraft_ID IN (
-    SELECT C.Aircraft_ID
-    FROM CERTIFIED C
-    JOIN EMPLOYEE E
-    ON C.Emp_ID = E.Emp_ID
-    GROUP BY C.Aircraft_ID
-    HAVING MIN(E.Salary) > 50000
-);
+SELECT DISTINCT A.Aircraft_name
+FROM AIRCRAFT A, CERTIFIED C, EMPLOYEE E
+WHERE A.Aircraft_ID = C.Aircraft_ID
+AND C.Emp_ID = E.Emp_ID
+AND E.Salary > 50000;
 
 -- Query 3
 SELECT *
@@ -25,3 +22,33 @@ WHERE Emp_ID NOT IN (
     SELECT Emp_ID
     FROM CERTIFIED
 );
+
+//MONGO
+
+// PROBLEM 3
+
+// Query 1
+db.restaurants.find(
+{
+    "address.area": "Bangalore",
+    cuisine: "North Indian Thali"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1,
+    nearby_landmarks: 1
+})
+
+// Query 2
+db.restaurants.find(
+{
+    "address.area": "Bangalore",
+    online_delivery: "yes"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1,
+    famous_for: 1
+})
