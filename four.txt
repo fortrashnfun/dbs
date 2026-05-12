@@ -1,0 +1,21 @@
+-- Query 1
+SELECT DISTINCT S.Sid
+FROM SUPPLIER S, PART P, SHIPMENT SH
+WHERE S.Sid = SH.Sid
+AND P.PID = SH.PID
+AND P.Color = 'Green';
+
+-- Query 2
+SELECT S.Sname, COUNT(SH.PID) AS Total_Parts
+FROM SUPPLIER S, SHIPMENT SH
+WHERE S.Sid = SH.Sid
+GROUP BY S.Sname;
+
+-- Query 3
+UPDATE PART
+SET Color = 'Yellow'
+WHERE PID IN (
+    SELECT PID
+    FROM SHIPMENT
+    WHERE Sid = 3
+);
