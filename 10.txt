@@ -1,0 +1,187 @@
+//SQL
+
+CREATE TABLE CUSTOMER (
+    cust_no INT PRIMARY KEY,
+    cname VARCHAR(50),
+    city VARCHAR(50)
+);
+
+CREATE TABLE ITEM (
+    item_no INT PRIMARY KEY,
+    unit_price DECIMAL(10, 2)
+);
+
+CREATE TABLE ORDERS (
+    order_no INT PRIMARY KEY,
+    odate DATE,
+    cust_no INT,
+    ord_Amt DECIMAL(12, 2),
+    FOREIGN KEY (cust_no) REFERENCES CUSTOMER(cust_no)
+);
+
+CREATE TABLE ORDER_ITEM (
+    order_no INT,
+    item_no INT,
+    qty INT,
+    PRIMARY KEY (order_no, item_no),
+    FOREIGN KEY (order_no) REFERENCES ORDERS(order_no),
+    FOREIGN KEY (item_no) REFERENCES ITEM(item_no)
+);
+
+CREATE TABLE SHIPMENT (
+    order_no INT PRIMARY KEY,
+    ship_date DATE,
+    FOREIGN KEY (order_no) REFERENCES ORDERS(order_no)
+);
+
+INSERT INTO CUSTOMER VALUES 
+(1, 'Rahul Sharma', 'Bangalore'),
+(2, 'Anjali Menon', 'Bangalore'),
+(3, 'Amitabh Singh', 'Mumbai'),
+(4, 'Suresh Prabhu', 'Bangalore'),
+(5, 'Meera Reddy', 'Hyderabad');
+
+INSERT INTO ITEM VALUES 
+(10, 500.00),
+(20, 1200.00),
+(30, 2500.00),
+(40, 100.00),
+(50, 750.00);
+
+INSERT INTO ORDERS VALUES 
+(1001, '2026-05-01', 1, 1500.00),
+(1002, '2026-05-02', 1, 2400.00),
+(1003, '2026-05-03', 2, 5000.00),
+(1004, '2026-05-04', 4, 300.00),
+(1005, '2026-05-05', 1, 750.00);
+
+INSERT INTO ORDER_ITEM VALUES 
+(1001, 10, 3),
+(1002, 20, 2),
+(1003, 30, 1),
+(1003, 10, 2),
+(1003, 50, 1),
+(1004, 40, 3),
+(1005, 50, 1);
+
+INSERT INTO SHIPMENT VALUES 
+(1001, '2026-05-02'),
+(1002, '2026-05-04'),
+(1003, '2026-05-05'),
+(1004, '2026-05-06'),
+(1005, '2026-05-07');
+
+//MONGO
+
+db.movies.insertMany([
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-10",
+    "Director_id": "D1",
+    "Director_name": "Sanjay",
+    "Director_birthdate": "1970-01-15",
+    "film_title": "Silent Night",
+    "year_of_production": 2012,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1992-09-22",
+    "Director_id": "D1",
+    "Director_name": "Sanjay",
+    "Director_birthdate": "1970-01-15",
+    "film_title": "Silent Night",
+    "year_of_production": 2012,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A3",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-12-05",
+    "Director_id": "D2",
+    "Director_name": "Mani",
+    "Director_birthdate": "1956-06-02",
+    "film_title": "Blue Ocean",
+    "year_of_production": 2026,
+    "type": "Drama"
+  },
+  {
+    "Actor_id": "A3",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-12-05",
+    "Director_id": "D3",
+    "Director_name": "Rajamouli",
+    "Director_birthdate": "1973-10-10",
+    "film_title": "Alpha Strike",
+    "year_of_production": 2024,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-10",
+    "Director_id": "D4",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1972-10-14",
+    "film_title": "City Heat",
+    "year_of_production": 2012,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1992-09-22",
+    "Director_id": "D4",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1972-10-14",
+    "film_title": "City Heat",
+    "year_of_production": 2012,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A4",
+    "Actor_name": "Deepika",
+    "Actor_birthdate": "1986-01-05",
+    "Director_id": "D1",
+    "Director_name": "Sanjay",
+    "Director_birthdate": "1970-01-15",
+    "film_title": "Eternal Flame",
+    "year_of_production": 2015,
+    "type": "Romance"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1985-04-10",
+    "Director_id": "D2",
+    "Director_name": "Mani",
+    "Director_birthdate": "1956-06-02",
+    "film_title": "Zodiac",
+    "year_of_production": 2012,
+    "type": "Mystery"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Elly",
+    "Actor_birthdate": "1992-09-22",
+    "Director_id": "D2",
+    "Director_name": "Mani",
+    "Director_birthdate": "1956-06-02",
+    "film_title": "Zodiac",
+    "year_of_production": 2012,
+    "type": "Mystery"
+  },
+  {
+    "Actor_id": "A3",
+    "Actor_name": "Ram",
+    "Actor_birthdate": "1988-12-05",
+    "Director_id": "D5",
+    "Director_name": "Karan",
+    "Director_birthdate": "1972-05-25",
+    "film_title": "Braveheart Indian",
+    "year_of_production": 2026,
+    "type": "History"
+  }
+]);
