@@ -14,12 +14,9 @@ AND P.Lname = 'Dhoni';
 
 -- Query 3
 SELECT Fname, Lname
-FROM PLAYER
-WHERE PId IN (
-    SELECT PId
-    FROM BATTING
-    WHERE MatchId = 2689
-);
+FROM PLAYER P, BATTING B
+WHERE P.Pid = B.Pid
+AND MatchId = 2689;
 
 //MONGO
 
