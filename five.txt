@@ -23,8 +23,6 @@ WHERE Emp_ID NOT IN (
 
 //MONGO
 
-// PROBLEM 2
-
 // Query 1
 db.tourist_places.find(
 {
