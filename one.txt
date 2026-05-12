@@ -27,7 +27,6 @@ WHERE Sid NOT IN (
 
 //MONGO
 
-// PROBLEM 1
 
 // Query 1
 db.restaurants.find(
