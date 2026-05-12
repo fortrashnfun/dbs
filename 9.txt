@@ -1,0 +1,185 @@
+//SQL
+
+CREATE TABLE CUSTOMER (
+    cust_no INT PRIMARY KEY,
+    cname VARCHAR(50),
+    city VARCHAR(50)
+);
+
+CREATE TABLE ITEM (
+    item_no INT PRIMARY KEY,
+    unit_price DECIMAL(10, 2)
+);
+
+CREATE TABLE ORDERS (
+    order_no INT PRIMARY KEY,
+    odate DATE,
+    cust_no INT,
+    ord_Amt DECIMAL(12, 2),
+    FOREIGN KEY (cust_no) REFERENCES CUSTOMER(cust_no)
+);
+
+CREATE TABLE ORDER_ITEM (
+    order_no INT,
+    item_no INT,
+    qty INT,
+    PRIMARY KEY (order_no, item_no),
+    FOREIGN KEY (order_no) REFERENCES ORDERS(order_no),
+    FOREIGN KEY (item_no) REFERENCES ITEM(item_no)
+);
+
+CREATE TABLE SHIPMENT (
+    order_no INT PRIMARY KEY,
+    ship_date DATE,
+    FOREIGN KEY (order_no) REFERENCES ORDERS(order_no)
+);
+
+INSERT INTO CUSTOMER VALUES 
+(1, 'Aakash Verma', 'Bengaluru'),
+(2, 'Sneha Kulkarni', 'Mumbai'),
+(3, 'Rohan Gupta', 'Delhi'),
+(4, 'Priya Nair', 'Kochi'),
+(5, 'Vikram Singh', 'Jaipur');
+
+INSERT INTO ITEM VALUES 
+(101, 1500.00),
+(102, 2500.00),
+(103, 500.00),
+(104, 12000.00),
+(105, 450.00);
+
+INSERT INTO ORDERS VALUES 
+(5001, '2026-05-01', 1, 3000.00),
+(5002, '2026-05-01', 1, 4500.00),
+(5003, '2026-05-02', 2, 12000.00),
+(5004, '2026-05-03', 1, 1500.00),
+(5005, '2026-05-03', 3, 25000.00);
+
+INSERT INTO ORDER_ITEM VALUES 
+(5001, 101, 2),
+(5002, 102, 1),
+(5003, 104, 1),
+(5004, 101, 1),
+(5005, 104, 2);
+
+INSERT INTO SHIPMENT VALUES 
+(5001, '2026-05-02'),
+(5002, '2026-05-04'),
+(5003, '2026-05-05'),
+(5004, '2026-05-06'),
+(5005, '2026-05-07');
+
+//MONGO
+
+db.movies.insertMany([
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1988-06-12",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1972-11-05",
+    "film_title": "The Silent Signal",
+    "year_of_production": 2018,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1988-06-12",
+    "Director_id": "D2",
+    "Director_name": "Karan",
+    "Director_birthdate": "1980-02-15",
+    "film_title": "Summer Shadows",
+    "year_of_production": 2018,
+    "type": "Drama"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Ayushmann",
+    "Actor_birthdate": "1984-09-14",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1972-11-05",
+    "film_title": "Metro Tales",
+    "year_of_production": 2021,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A3",
+    "Actor_name": "Deepika",
+    "Actor_birthdate": "1986-01-05",
+    "Director_id": "D3",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1975-10-14",
+    "film_title": "Coastal Run",
+    "year_of_production": 2018,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1988-06-12",
+    "Director_id": "D4",
+    "Director_name": "Aditya",
+    "Director_birthdate": "1971-08-20",
+    "film_title": "Neon Nights",
+    "year_of_production": 2019,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A4",
+    "Actor_name": "Vicky",
+    "Actor_birthdate": "1988-05-16",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1972-11-05",
+    "film_title": "Borderline",
+    "year_of_production": 2020,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1988-06-12",
+    "Director_id": "D5",
+    "Director_name": "Farhan",
+    "Director_birthdate": "1974-01-09",
+    "film_title": "Peak Point",
+    "year_of_production": 2018,
+    "type": "Adventure"
+  },
+  {
+    "Actor_id": "A5",
+    "Actor_name": "Alia",
+    "Actor_birthdate": "1993-03-15",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1972-11-05",
+    "film_title": "Lost in Hampi",
+    "year_of_production": 2022,
+    "type": "Romance"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Ayushmann",
+    "Actor_birthdate": "1984-09-14",
+    "Director_id": "D2",
+    "Director_name": "Karan",
+    "Director_birthdate": "1980-02-15",
+    "film_title": "Old Town Road",
+    "year_of_production": 2018,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A6",
+    "Actor_name": "Rajkumar",
+    "Actor_birthdate": "1984-08-31",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1972-11-05",
+    "film_title": "The Grid",
+    "year_of_production": 2017,
+    "type": "Sci-Fi"
+  }
+]);
