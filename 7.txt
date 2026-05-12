@@ -1,0 +1,188 @@
+//SQL
+
+CREATE TABLE PERSON (
+    driver_id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(50),
+    address VARCHAR(100)
+);
+
+CREATE TABLE CAR (
+    Regno VARCHAR(20) PRIMARY KEY,
+    model VARCHAR(30),
+    year INT
+);
+
+CREATE TABLE ACCIDENT (
+    report_number INT PRIMARY KEY,
+    acc_date DATE,
+    location VARCHAR(100)
+);
+
+CREATE TABLE OWNS (
+    driver_id VARCHAR(20),
+    Regno VARCHAR(20),
+    PRIMARY KEY (driver_id, Regno),
+    FOREIGN KEY (driver_id) REFERENCES PERSON(driver_id),
+    FOREIGN KEY (Regno) REFERENCES CAR(Regno)
+);
+
+CREATE TABLE PARTICIPATED (
+    driver_id VARCHAR(20),
+    Regno VARCHAR(20),
+    report_number INT,
+    damage_amount DECIMAL(10, 2),
+    PRIMARY KEY (driver_id, Regno, report_number),
+    FOREIGN KEY (driver_id) REFERENCES PERSON(driver_id),
+    FOREIGN KEY (Regno) REFERENCES CAR(Regno),
+    FOREIGN KEY (report_number) REFERENCES ACCIDENT(report_number)
+);
+
+INSERT INTO PERSON VALUES 
+('D101', 'Rahul Dravid', 'Indiranagar, Bangalore'),
+('D102', 'Sania Mirza', 'Jubilee Hills, Hyderabad'),
+('D103', 'Neeraj Chopra', 'Model Town, Panipat'),
+('D104', 'Mithali Raj', 'Banjara Hills, Hyderabad'),
+('D105', 'Hardik Pandya', 'Juhu, Mumbai');
+
+INSERT INTO CAR VALUES 
+('KA-01-MJ-1234', 'Tata Nexon', 2022),
+('TS-09-BE-5678', 'Mahindra XUV700', 2023),
+('HR-26-CH-9012', 'Toyota Fortuner', 2024),
+('MH-02-BP-3456', 'Hyundai Verna', 2021),
+('KA-03-NC-7890', 'Maruti Suzuki Swift', 2025);
+
+INSERT INTO ACCIDENT VALUES 
+(8001, '2026-05-01', 'MG Road, Bangalore'),
+(8002, '2026-05-03', 'Gachibowli, Hyderabad'),
+(8003, '2026-05-05', 'Marine Drive, Mumbai'),
+(8004, '2026-05-07', 'Silk Board, Bangalore'),
+(8005, '2026-05-10', 'Cyber City, Gurgaon');
+
+INSERT INTO OWNS VALUES 
+('D101', 'KA-01-MJ-1234'),
+('D101', 'KA-03-NC-7890'),
+('D102', 'TS-09-BE-5678'),
+('D103', 'HR-26-CH-9012'),
+('D105', 'MH-02-BP-3456');
+
+INSERT INTO PARTICIPATED VALUES 
+('D101', 'KA-01-MJ-1234', 8001, 25000.00),
+('D102', 'TS-09-BE-5678', 8002, 55000.00),
+('D103', 'HR-26-CH-9012', 8005, 12000.00),
+('D105', 'MH-02-BP-3456', 8003, 95000.00),
+('D101', 'KA-03-NC-7890', 8004, 4000.00);
+
+//MONGO
+
+db.movies.insertMany([
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1990-05-15",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1975-10-20",
+    "film_title": "The Silent Code",
+    "year_of_production": 2018,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1990-05-15",
+    "Director_id": "D2",
+    "Director_name": "Karan",
+    "Director_birthdate": "1980-02-12",
+    "film_title": "Summer Dreams",
+    "year_of_production": 2018,
+    "type": "Comedy"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Ranveer",
+    "Actor_birthdate": "1985-07-06",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1975-10-20",
+    "film_title": "Urban Legend",
+    "year_of_production": 2021,
+    "type": "Action"
+  },
+  {
+    "Actor_id": "A3",
+    "Actor_name": "Deepika",
+    "Actor_birthdate": "1986-01-05",
+    "Director_id": "D3",
+    "Director_name": "Zoya",
+    "Director_birthdate": "1972-11-14",
+    "film_title": "Skyline",
+    "year_of_production": 2018,
+    "type": "Drama"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1990-05-15",
+    "Director_id": "D4",
+    "Director_name": "Raj",
+    "Director_birthdate": "1970-08-30",
+    "film_title": "Dark Knight of Goa",
+    "year_of_production": 2019,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A4",
+    "Actor_name": "Alia",
+    "Actor_birthdate": "1993-03-15",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1975-10-20",
+    "film_title": "Morning Dew",
+    "year_of_production": 2020,
+    "type": "Romance"
+  },
+  {
+    "Actor_id": "A5",
+    "Actor_name": "Ayushmann",
+    "Actor_birthdate": "1984-09-14",
+    "Director_id": "D5",
+    "Director_name": "Anurag",
+    "Director_birthdate": "1972-09-10",
+    "film_title": "Mystery Box",
+    "year_of_production": 2018,
+    "type": "Thriller"
+  },
+  {
+    "Actor_id": "A1",
+    "Actor_name": "John",
+    "Actor_birthdate": "1990-05-15",
+    "Director_id": "D6",
+    "Director_name": "Meghna",
+    "Director_birthdate": "1973-12-13",
+    "film_title": "Braveheart",
+    "year_of_production": 2018,
+    "type": "Biography"
+  },
+  {
+    "Actor_id": "A6",
+    "Actor_name": "Pankaj",
+    "Actor_birthdate": "1976-09-05",
+    "Director_id": "D1",
+    "Director_name": "Ram",
+    "Director_birthdate": "1975-10-20",
+    "film_title": "The Last Stand",
+    "year_of_production": 2017,
+    "type": "Crime"
+  },
+  {
+    "Actor_id": "A2",
+    "Actor_name": "Ranveer",
+    "Actor_birthdate": "1985-07-06",
+    "Director_id": "D2",
+    "Director_name": "Karan",
+    "Director_birthdate": "1980-02-12",
+    "film_title": "City Lights",
+    "year_of_production": 2022,
+    "type": "Drama"
+  }
+]);
