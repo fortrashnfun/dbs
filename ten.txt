@@ -1,3 +1,4 @@
+//SQL
 -- Query 1
 SELECT Cname, COUNT(Order_ID)
 FROM CUSTOMER C, ORDERS O
@@ -21,3 +22,32 @@ WHERE Cust_ID NOT IN (
     WHERE O.Order_ID = OI.Order_ID
     AND Item_ID = 10
 );
+
+//MONGO
+
+// Query 1
+db.movies.find(
+{
+    actor_name: {
+        $in: ["John", "Elly"]
+    },
+    year_of_production: 2012
+},
+{
+    _id: 0,
+    film_title: 1
+})
+
+// Query 2
+db.movies.find(
+{
+    actor_name: "Ram"
+},
+{
+    _id: 0,
+    film_title: 1,
+    type: 1
+}).sort(
+{
+    film_title: 1
+})
