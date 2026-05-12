@@ -2,29 +2,25 @@
 
 -- Query 1
 SELECT Cname
-FROM CUSTOMER
-WHERE Cust_ID IN (
-    SELECT Cust_ID
-    FROM ORDERS
-    GROUP BY Cust_ID
-    HAVING COUNT(Order_ID) > 2
-);
+FROM CUSTOMER C, ORDER_TABLE O
+WHERE C.Cust_ID = O.Cust_ID
+GROUP BY Cname
+HAVING COUNT(Order_ID) > 2;
+
 
 -- Query 2
-SELECT Odate, SUM(Ord_Amt) AS Total_Amount
-FROM ORDERS
+SELECT Odate, SUM(Ord_Amt)
+FROM ORDER_TABLE
 GROUP BY Odate;
+
 
 -- Query 3
 SELECT *
-FROM CUSTOMER
-WHERE Cust_ID IN (
-    SELECT Cust_ID
-    FROM ORDERS
-    WHERE Ord_Amt = (
-        SELECT MAX(Ord_Amt)
-        FROM ORDERS
-    )
+FROM CUSTOMER C, ORDER_TABLE O
+WHERE C.Cust_ID = O.Cust_ID
+AND Ord_Amt = (
+    SELECT MAX(Ord_Amt)
+    FROM ORDER_TABLE
 );
 
 //MONGO
