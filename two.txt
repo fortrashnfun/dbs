@@ -1,8 +1,8 @@
 -- Query 1
 SELECT Fname, Lname
 FROM EMPLOYEE
-WHERE Salary > ALL (
-    SELECT Salary
+WHERE Salary > (
+    SELECT MAX(Salary)
     FROM EMPLOYEE
     WHERE Dno = 5
 );
@@ -16,3 +16,32 @@ WHERE Pno IN (1, 2, 3);
 SELECT Pno, SUM(Hours) AS Total_Hours
 FROM WORKS_ON
 GROUP BY Pno;
+
+// PROBLEM 2
+
+
+//MONGO
+// Query 1
+db.restaurants.find(
+{
+    "address.area": "Bangalore",
+    cuisine: "North Indian Thali"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1,
+    nearby_landmarks: 1
+})
+
+// Query 2
+db.restaurants.find(
+{
+    "address.area": "Bangalore"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1,
+    famous_for: 1
+})
