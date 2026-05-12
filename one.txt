@@ -2,27 +2,26 @@
 
 -- i. Find the names of sailors who have reserved at least one boat
 
-SELECT DISTINCT S.Sname
-FROM Sailors S
-JOIN Reserves R
-ON S.Sid = R.Sid;
+SELECT DISTINCT Sname
+FROM SAILORS S, RESERVES R
+WHERE S.Sid = R.Sid;
 
 -- ii. Find the Sid’s of sailors who have reserved
 -- a red or a green boat
 
-SELECT DISTINCT R.Sid
-FROM Reserves R
-JOIN Boats B
-ON R.Bid = B.Bid
-WHERE B.Colour IN ('Red', 'Green');
+SELECT DISTINCT S.Sid
+FROM SAILORS S, RESERVES R, BOATS B
+WHERE S.Sid = R.Sid
+AND R.Bid = B.Bid
+AND Colour IN ('Red', 'Green');
 
 -- iii. Find the Sid’s of sailors who have not reserved a boat
 
 SELECT Sid
-FROM Sailors
+FROM SAILORS
 WHERE Sid NOT IN (
     SELECT Sid
-    FROM Reserves
+    FROM RESERVES
 );
 
 //MONGO
