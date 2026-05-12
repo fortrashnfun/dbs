@@ -1,0 +1,154 @@
+//SQL
+
+CREATE TABLE DEPARTMENT (
+    Dname VARCHAR(50),
+    Dnumber INT PRIMARY KEY,
+    MgrSSN CHAR(9),
+    MgrStartDate DATE
+);
+
+CREATE TABLE EMPLOYEE (
+    Fname VARCHAR(50),
+    Lname VARCHAR(50),
+    SSN CHAR(9) PRIMARY KEY,
+    Addrs VARCHAR(100),
+    Sex CHAR(1),
+    Salary DECIMAL(10, 2),
+    SuperSSN CHAR(9),
+    Dno INT,
+    FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dnumber),
+    FOREIGN KEY (SuperSSN) REFERENCES EMPLOYEE(SSN)
+);
+
+CREATE TABLE DEPENDENT (
+    Dname VARCHAR(50),
+    ESSN CHAR(9),
+    PRIMARY KEY (ESSN, Dname),
+    FOREIGN KEY (ESSN) REFERENCES EMPLOYEE(SSN)
+);
+
+INSERT INTO DEPARTMENT VALUES 
+('FinTech Solutions', 1, '111222333', '2026-05-01'),
+('EduTech Services', 2, '444555666', '2026-05-02'),
+('HealthCare', 3, '777888999', '2026-05-03'),
+('DeepTech Research', 4, '121212121', '2026-05-04'),
+('Marketing', 5, '232323232', '2026-05-05');
+
+INSERT INTO EMPLOYEE VALUES 
+('Rajesh', 'Kumar', '111222333', 'Indiranagar, Bangalore', 'M', 85000.00, NULL, 1),
+('Sunita', 'Sharma', '444555666', 'HSR Layout, Bangalore', 'F', 95000.00, NULL, 2),
+('Amit', 'Patel', '777888999', 'Navrangpura, Ahmedabad', 'M', 60000.00, NULL, 3),
+('Anjali', 'Iyer', '121212121', 'Adyar, Chennai', 'F', 120000.00, NULL, 4),
+('Suresh', 'Raina', '232323232', 'Civil Lines, Kanpur', 'M', 75000.00, '111222333', 1);
+
+INSERT INTO DEPENDENT VALUES 
+('Aryan', '111222333'),
+('Kavya', '111222333'),
+('Rohan', '444555666'),
+('Meera', '121212121'),
+('Ishaan', '777888999');
+
+//MONGO
+
+db.tourist_places.insertMany([
+  {
+    "id": 1,
+    "place": "Gokarna",
+    "address": { "state": "Karnataka", "loc_id": "KA001" },
+    "tourist_attractions": ["Om Beach", "Mahabaleshwar Temple"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Dabolim", "railway": "Gokarna Road" },
+    "accommodation": "Beach Resorts",
+    "food": "Gadbad Ice Cream"
+  },
+  {
+    "id": 2,
+    "place": "Shimla",
+    "address": { "state": "Himachal Pradesh", "loc_id": "HP001" },
+    "tourist_attractions": ["The Ridge", "Mall Road"],
+    "best_time_to_visit": "March to June",
+    "modes_of_transport": { "airport": "Jubarhatti", "railway": "Kalka" },
+    "accommodation": "Heritage Hotels",
+    "food": "Siddu"
+  },
+  {
+    "id": 3,
+    "place": "Mysuru",
+    "address": { "state": "Karnataka", "loc_id": "KA002" },
+    "tourist_attractions": ["Mysore Palace", "Zoo"],
+    "best_time_to_visit": "October to February",
+    "modes_of_transport": { "airport": "Mandakalli", "railway": "Mysuru Junction" },
+    "accommodation": "Palatial Hotels",
+    "food": "Mysore Masala Dosa"
+  },
+  {
+    "id": 4,
+    "place": "Manali",
+    "address": { "state": "Himachal Pradesh", "loc_id": "HP002" },
+    "tourist_attractions": ["Solang Valley", "Rohtang Pass"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "airport": "Bhuntar", "railway": "Chandigarh" },
+    "accommodation": "Riverside Cottages",
+    "food": "Trout Fish"
+  },
+  {
+    "id": 5,
+    "place": "Badami",
+    "address": { "state": "Karnataka", "loc_id": "KA003" },
+    "tourist_attractions": ["Cave Temples", "Agastya Lake"],
+    "best_time_to_visit": "November to February",
+    "modes_of_transport": { "airport": "Hubballi", "railway": "Badami" },
+    "accommodation": "Economy Lodges",
+    "food": "Holige"
+  },
+  {
+    "id": 6,
+    "place": "Ooty",
+    "address": { "state": "Tamil Nadu", "loc_id": "TN001" },
+    "tourist_attractions": ["Botanical Garden", "Ooty Lake"],
+    "best_time_to_visit": "April to June",
+    "modes_of_transport": { "airport": "Coimbatore", "railway": "Mettupalayam" },
+    "accommodation": "Hill View Resorts",
+    "food": "Varkey"
+  },
+  {
+    "id": 7,
+    "place": "Madurai",
+    "address": { "state": "Tamil Nadu", "loc_id": "TN002" },
+    "tourist_attractions": ["Meenakshi Temple", "Thirumalai Nayakkar Mahal"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Madurai Airport", "railway": "Madurai Junction" },
+    "accommodation": "Temple-view Hotels",
+    "food": "Jigarthanda"
+  },
+  {
+    "id": 8,
+    "place": "Belur",
+    "address": { "state": "Karnataka", "loc_id": "KA004" },
+    "tourist_attractions": ["Chennakesava Temple"],
+    "best_time_to_visit": "October to April",
+    "modes_of_transport": { "airport": "Mangalore", "railway": "Hassan" },
+    "accommodation": "Tourist Homes",
+    "food": "Akki Roti"
+  },
+  {
+    "id": 9,
+    "place": "Puri",
+    "address": { "state": "Odisha", "loc_id": "OD001" },
+    "tourist_attractions": ["Jagannath Temple", "Puri Beach"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Bhubaneswar", "railway": "Puri" },
+    "accommodation": "Beachside Resorts",
+    "food": "Khaja"
+  },
+  {
+    "id": 10,
+    "place": "Bandipur",
+    "address": { "state": "Karnataka", "loc_id": "KA005" },
+    "tourist_attractions": ["Tiger Reserve", "Safari"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "airport": "Mysuru", "railway": "Mysuru" },
+    "accommodation": "Forest Guest Houses",
+    "food": "Bisi Bele Bath"
+  }
+]);
