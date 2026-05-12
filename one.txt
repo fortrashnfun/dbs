@@ -1,3 +1,5 @@
+//SQL
+
 -- i. Find the names of sailors who have reserved at least one boat
 
 SELECT DISTINCT S.Sname
@@ -23,3 +25,31 @@ WHERE Sid NOT IN (
     FROM Reserves
 );
 
+//MONGO
+
+// PROBLEM 1
+
+// Query 1
+db.restaurants.find(
+{
+    "address.area": "Bangalore",
+    cuisine: "Italian"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1
+})
+
+// Query 2
+db.restaurants.find(
+{
+    "address.area": "Bangalore",
+    cuisine: "North Indian Thali"
+},
+{
+    _id: 0,
+    name: 1,
+    address: 1,
+    nearby_landmarks: 1
+})
