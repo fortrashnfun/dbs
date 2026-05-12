@@ -1,0 +1,148 @@
+//SQL
+
+CREATE TABLE AIRCRAFT (
+    Aircraft_ID INT PRIMARY KEY,
+    Aircraft_name VARCHAR(50),
+    Cruising_range INT
+);
+
+CREATE TABLE EMPLOYEE (
+    Emp_ID INT PRIMARY KEY,
+    Ename VARCHAR(50),
+    Salary DECIMAL(10, 2)
+);
+
+CREATE TABLE CERTIFIED (
+    Emp_ID INT,
+    Aircraft_ID INT,
+    PRIMARY KEY (Emp_ID, Aircraft_ID),
+    FOREIGN KEY (Emp_ID) REFERENCES EMPLOYEE(Emp_ID),
+    FOREIGN KEY (Aircraft_ID) REFERENCES AIRCRAFT(Aircraft_ID)
+);
+
+INSERT INTO AIRCRAFT VALUES 
+(101, 'Boeing 747', 8000),
+(102, 'Airbus A380', 9500),
+(103, 'Boeing 737', 3500),
+(104, 'Cessna 172', 800),
+(105, 'Boeing 777', 7500);
+
+INSERT INTO EMPLOYEE VALUES 
+(1, 'Aravind Swamy', 95000.00),
+(2, 'Deepika Padukone', 120000.00),
+(3, 'Ranbir Kapoor', 85000.00),
+(4, 'Alia Bhatt', 110000.00),
+(5, 'Vijay Sethupathi', 70000.00);
+
+INSERT INTO CERTIFIED VALUES 
+(1, 101),
+(1, 103),
+(2, 102),
+(3, 105),
+(4, 101),
+(5, 104);
+
+//MONGO
+
+db.tourist_places.insertMany([
+  {
+    "id": 1,
+    "place": "Munnar",
+    "address": { "state": "Kerala", "loc_id": "KL01" },
+    "tourist_attractions": ["Tea Gardens", "Eravikulam National Park", "Mattupetty Dam"],
+    "best_time_to_visit": "September to March",
+    "modes_of_transport": { "airport": "Cochin International", "railway": "Aluva" },
+    "accommodation": "Hill View Resorts",
+    "food": "Kerala Sadya"
+  },
+  {
+    "id": 2,
+    "place": "Alappuzha",
+    "address": { "state": "Kerala", "loc_id": "KL02" },
+    "tourist_attractions": ["Backwaters", "Vembanad Lake", "Alappuzha Beach"],
+    "best_time_to_visit": "November to February",
+    "modes_of_transport": { "airport": "Cochin International", "railway": "Alappuzha" },
+    "accommodation": "Houseboats",
+    "food": "Puttu and Kadala Curry"
+  },
+  {
+    "id": 3,
+    "place": "Hampi",
+    "address": { "state": "Karnataka", "loc_id": "KA01" },
+    "tourist_attractions": ["Virupaksha Temple", "Stone Chariot"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Hubballi", "railway": "Hosapete" },
+    "accommodation": "Heritage Stays",
+    "food": "Jolada Roti"
+  },
+  {
+    "id": 4,
+    "place": "Coorg",
+    "address": { "state": "Karnataka", "loc_id": "KA02" },
+    "tourist_attractions": ["Abbey Falls", "Golden Temple", "Raja's Seat"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "airport": "Kannur", "railway": "Mysuru" },
+    "accommodation": "Coffee Estate Homestays",
+    "food": "Pandi Curry"
+  },
+  {
+    "id": 5,
+    "place": "Wayanad",
+    "address": { "state": "Kerala", "loc_id": "KL03" },
+    "tourist_attractions": ["Edakkal Caves", "Banasura Sagar Dam"],
+    "best_time_to_visit": "October to May",
+    "modes_of_transport": { "airport": "Calicut", "railway": "Kozhikode" },
+    "accommodation": "Tree Houses",
+    "food": "Malabar Biryani"
+  },
+  {
+    "id": 6,
+    "place": "Udaipur",
+    "address": { "state": "Rajasthan", "loc_id": "RJ01" },
+    "tourist_attractions": ["City Palace", "Lake Pichola"],
+    "best_time_to_visit": "September to March",
+    "modes_of_transport": { "airport": "Maharana Pratap", "railway": "Udaipur City" },
+    "accommodation": "Lake View Hotels",
+    "food": "Dal Baati Churma"
+  },
+  {
+    "id": 7,
+    "place": "Jaipur",
+    "address": { "state": "Rajasthan", "loc_id": "RJ02" },
+    "tourist_attractions": ["Amer Fort", "Hawa Mahal", "Jantar Mantar"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Jaipur International", "railway": "Jaipur Junction" },
+    "accommodation": "Palatial Resorts",
+    "food": "Ghevar"
+  },
+  {
+    "id": 8,
+    "place": "Varanasi",
+    "address": { "state": "Uttar Pradesh", "loc_id": "UP01" },
+    "tourist_attractions": ["Kashi Vishwanath Temple", "Dashashwamedh Ghat"],
+    "best_time_to_visit": "November to February",
+    "modes_of_transport": { "airport": "Lal Bahadur Shastri", "railway": "Varanasi Junction" },
+    "accommodation": "Ghat-side Guest Houses",
+    "food": "Banarasi Lassi"
+  },
+  {
+    "id": 9,
+    "place": "Agra",
+    "address": { "state": "Uttar Pradesh", "loc_id": "UP02" },
+    "tourist_attractions": ["Taj Mahal", "Agra Fort"],
+    "best_time_to_visit": "October to March",
+    "modes_of_transport": { "airport": "Agra Airport", "railway": "Agra Cantt" },
+    "accommodation": "Luxury Suites",
+    "food": "Petha"
+  },
+  {
+    "id": 10,
+    "place": "Kumarakom",
+    "address": { "state": "Kerala", "loc_id": "KL04" },
+    "tourist_attractions": ["Bird Sanctuary", "Pathiramanal Island"],
+    "best_time_to_visit": "September to March",
+    "modes_of_transport": { "airport": "Cochin International", "railway": "Kottayam" },
+    "accommodation": "Lake Resorts",
+    "food": "Karimeen Pollichathu"
+  }
+]);
