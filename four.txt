@@ -22,7 +22,6 @@ WHERE PID IN (
 );
 
 //MONGO
-// PROBLEM 1
 
 // Query 1
 db.tourist_places.find(
