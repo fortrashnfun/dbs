@@ -1,0 +1,137 @@
+//SQL
+
+CREATE TABLE AIRCRAFT (
+    Aircraft_ID INT PRIMARY KEY,
+    Aircraft_name VARCHAR(50),
+    Cruising_range INT
+);
+
+CREATE TABLE EMPLOYEE (
+    Emp_ID INT PRIMARY KEY,
+    Ename VARCHAR(50),
+    Salary DECIMAL(10, 2)
+);
+
+CREATE TABLE CERTIFIED (
+    Emp_ID INT,
+    Aircraft_ID INT,
+    PRIMARY KEY (Emp_ID, Aircraft_ID),
+    FOREIGN KEY (Emp_ID) REFERENCES EMPLOYEE(Emp_ID),
+    FOREIGN KEY (Aircraft_ID) REFERENCES AIRCRAFT(Aircraft_ID)
+);
+
+INSERT INTO AIRCRAFT VALUES 
+(501, 'Boeing 737', 5000),
+(502, 'Airbus A320', 6000),
+(503, 'Cessna Citation', 3000),
+(504, 'Embraer E190', 4500),
+(505, 'Dassault Falcon', 7000);
+
+INSERT INTO EMPLOYEE VALUES 
+(1, 'Aditya Kulkarni', 120000.00),
+(2, 'Ishaan Nair', 45000.00),
+(3, 'Kavya Reddy', 85000.00),
+(4, 'Siddharth Rao', 120000.00),
+(5, 'Meera Deshmukh', 55000.00);
+
+INSERT INTO CERTIFIED VALUES 
+(1, 501),
+(1, 502),
+(3, 501),
+(3, 505),
+(5, 502);
+
+//MONGO
+
+db.restaurants.insertMany([
+  {
+    "id": 1,
+    "name": "Brahmin's Kitchen",
+    "address": { "building": "Block C", "street": "V.V. Puram", "area": "Bangalore", "pin_code": 560004 },
+    "cuisine": ["North Indian thali", "South Indian"],
+    "nearby_landmarks": "Food Street",
+    "online_delivery": "yes",
+    "famous_for": "Filter Coffee"
+  },
+  {
+    "id": 2,
+    "name": "Punjab Grill",
+    "address": { "building": "Mall 2", "street": "Vittal Mallya Road", "area": "Bangalore", "pin_code": 560001 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "UB City",
+    "online_delivery": "yes",
+    "famous_for": "Salmon Tikka"
+  },
+  {
+    "id": 3,
+    "name": "The Hub",
+    "address": { "building": "Hotel Ibis", "street": "Outer Ring Road", "area": "Bangalore", "pin_code": 560103 },
+    "cuisine": ["Continental"],
+    "nearby_landmarks": "Intel Office",
+    "online_delivery": "no",
+    "famous_for": "Pasta Carbonara"
+  },
+  {
+    "id": 4,
+    "name": "Shanti Sagar",
+    "address": { "building": "B4", "street": "Jayanagar 3rd Block", "area": "Bangalore", "pin_code": 560011 },
+    "cuisine": ["North Indian thali", "Chinese"],
+    "nearby_landmarks": "Madhavan Park",
+    "online_delivery": "yes",
+    "famous_for": "Executive Thali"
+  },
+  {
+    "id": 5,
+    "name": "Ondu Cycle",
+    "address": { "building": "Unit 5", "street": "Malleshwaram 15th Cross", "area": "Bangalore", "pin_code": 560003 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Mantri Square",
+    "online_delivery": "no",
+    "famous_for": "Desi Ghee Thali"
+  },
+  {
+    "id": 6,
+    "name": "The Coastal Crew",
+    "address": { "building": "Corner House", "street": "HSR Layout 1st Sector", "area": "Bangalore", "pin_code": 560102 },
+    "cuisine": ["Seafood"],
+    "nearby_landmarks": "HSR Club",
+    "online_delivery": "yes",
+    "famous_for": "Fish Fry"
+  },
+  {
+    "id": 7,
+    "name": "Pind Balluchi",
+    "address": { "building": "Level 3", "street": "Sarjapur Road", "area": "Bangalore", "pin_code": 560035 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Wipro Campus",
+    "online_delivery": "yes",
+    "famous_for": "Dal Baluchi"
+  },
+  {
+    "id": 8,
+    "name": "Sultans of Spice",
+    "address": { "building": "Blue Petal Hotel", "street": "Koramangala 5th Block", "area": "Bangalore", "pin_code": 560095 },
+    "cuisine": ["Mughlai", "North Indian thali"],
+    "nearby_landmarks": "Jyoti Nivas College",
+    "online_delivery": "no",
+    "famous_for": "Galouti Kebab"
+  },
+  {
+    "id": 9,
+    "name": "Chulha Chauki",
+    "address": { "building": "Apt 1", "street": "Electronic City Ph 1", "area": "Bangalore", "pin_code": 560100 },
+    "cuisine": ["North Indian thali"],
+    "nearby_landmarks": "Infosys Gate 6",
+    "online_delivery": "yes",
+    "famous_for": "Phulka and Sabzi"
+  },
+  {
+    "id": 10,
+    "name": "Empire Restaurant",
+    "address": { "building": "9/1", "street": "Church Street", "area": "Bangalore", "pin_code": 560001 },
+    "cuisine": ["Multi-cuisine"],
+    "nearby_landmarks": "Amoeba",
+    "online_delivery": "yes",
+    "famous_for": "Empire Special Chicken"
+  }
+]);
