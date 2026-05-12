@@ -1,0 +1,26 @@
+-- Query 1
+SELECT Cname
+FROM CUSTOMER
+WHERE Cust_ID IN (
+    SELECT Cust_ID
+    FROM ORDERS
+    GROUP BY Cust_ID
+    HAVING COUNT(Order_ID) > 2
+);
+
+-- Query 2
+SELECT Odate, SUM(Ord_Amt) AS Total_Amount
+FROM ORDERS
+GROUP BY Odate;
+
+-- Query 3
+SELECT *
+FROM CUSTOMER
+WHERE Cust_ID IN (
+    SELECT Cust_ID
+    FROM ORDERS
+    WHERE Ord_Amt = (
+        SELECT MAX(Ord_Amt)
+        FROM ORDERS
+    )
+);
