@@ -19,3 +19,26 @@ WHERE Emp_ID NOT IN (
     WHERE C.Aircraft_ID = A.Aircraft_ID
     AND Aircraft_name LIKE 'Boeing%'
 );
+
+
+//MONGO
+
+// PROBLEM 2
+
+// Query 1
+db.tourist_places.find(
+{
+    "address.state": "Kerala"
+},
+{
+    _id: 0,
+    tourist_attractions: 1,
+    accommodation: 0,
+    food: 0
+})
+
+// Query 2
+db.tourist_places.find().sort(
+{
+    "address.state": 1
+})
